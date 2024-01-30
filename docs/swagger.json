@@ -1,0 +1,55 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Device worker service",
+        "contact": {}
+    },
+    "host": "192.168.0.105:8087",
+    "paths": {
+        "/screenshot/:uuid": {
+            "get": {
+                "description": "Get files by providing the filename as a query parameter.",
+                "produces": [
+                    "image/png"
+                ],
+                "summary": "Get files by filename",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "\"example.png\"",
+                        "description": "File name",
+                        "name": "filename",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "file name not specified",
+                        "schema": {
+                            "type": "json"
+                        }
+                    },
+                    "404": {
+                        "description": "error file not found",
+                        "schema": {
+                            "type": "json"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error\" example({\"error\":\"Internal Server Error\"})",
+                        "schema": {
+                            "type": "json"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

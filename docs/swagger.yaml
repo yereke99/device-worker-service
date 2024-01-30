@@ -1,0 +1,36 @@
+host: 192.168.0.105:8087
+info:
+  contact: {}
+  title: Device worker service
+paths:
+  /screenshot/:uuid:
+    get:
+      description: Get files by providing the filename as a query parameter.
+      parameters:
+      - default: '"example.png"'
+        description: File name
+        in: query
+        name: filename
+        required: true
+        type: string
+      produces:
+      - image/png
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: file name not specified
+          schema:
+            type: json
+        "404":
+          description: error file not found
+          schema:
+            type: json
+        "500":
+          description: Internal Server Error" example({"error":"Internal Server Error"})
+          schema:
+            type: json
+      summary: Get files by filename
+swagger: "2.0"
